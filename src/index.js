@@ -34,15 +34,11 @@ class SimpleImage {
              editor: null,
              wrapper:null,
              button:null,
+             caption:null
         }
     }
 
-    _createImage(url){
-        const image = document.createElement('img');
 
-        image.src = url;
-        console.log(image);
-      }
 
 
     render(){
@@ -50,7 +46,7 @@ class SimpleImage {
         this.nodes.editor = document.createElement('div');
         this.nodes.editor.classList.add('editor');
         this.nodes.button = document.createElement('button');
-        this.nodes.input = document.createElement('input');
+        this.nodes.input = document.createElement('div');
         this.nodes.input.classList.add('input-url');
         this.nodes.input.type="hidden";
         this.nodes.preview = document.createElement('img');
@@ -60,10 +56,6 @@ class SimpleImage {
         this.nodes.input.value =  this.data && this.data.url ? this.data.url : '';
         this.nodes.preview.src = this.nodes.input.value ;
 
-        this.nodes.input.addEventListener('paste', (event) => {
-             this._createImage(event.clipboardData.getData('text'));
-           });
-
         this.nodes.wrapper = document.createElement('wrapper')
         this.nodes.wrapper.appendChild(this.nodes.input);
         this.nodes.wrapper.appendChild(this.nodes.button);
@@ -71,11 +63,12 @@ class SimpleImage {
         this.nodes.button.type = 'button';
         this.nodes.button.innerHTML ='Browse';
 
-
-
+        this.nodes.caption = document.createElement('div');
+        this.nodes.caption.contentEditable=true;
         this.nodes.editor.appendChild(this.nodes.wrapper);
         this.nodes.editor.appendChild(this.nodes.preview);
-
+        this.nodes.editor.appendChild(this.nodes.caption);
+        this.nodes.caption.innerHTML =  this.data && this.data.caption ? this.data.caption : '[image placeholder]';
         if(this.config.browseCallback){
 
             this.nodes.button.addEventListener('click', (event) => {
@@ -83,6 +76,8 @@ class SimpleImage {
 
                     this.nodes.input.value = this.prepareLink(file);
                     this.nodes.preview.src = this.nodes.input.value ;
+
+                    this.nodes.caption.innerHTML =  '[image placeholder]'
                     console.log(file);
                 },this);
             });
@@ -92,7 +87,8 @@ class SimpleImage {
 
      save(blockContent){
          return {
-             url: this.prepareLink(this.nodes.input.value)
+             url: this.prepareLink(this.nodes.input.value),
+             caption: this.nodes.caption.innerHTML
          }
      }
      prepareLink(link) {

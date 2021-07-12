@@ -1,6 +1,7 @@
 import { ToolConstructable, ToolSettings } from '@editorjs/editorjs';
 import Paragraph from '@editorjs/paragraph'
 import SimpleImage from 'editorjs-simple-image';
+import Hyperlink from 'editorjs-hyperlink-browse';
 
 export const EDITOR_JS_TOOLS = {
     paragraph: {
@@ -14,6 +15,7 @@ export const EDITOR_JS_TOOLS = {
 
     image: {
         class:SimpleImage,
+        inlineToolbar: true,
         config:{
             shouldMakeLinkAbsolute:true,
             browseCallback : function (callback){
@@ -23,5 +25,24 @@ export const EDITOR_JS_TOOLS = {
                 callback('logo512.png');
             }
         }
-    }
+    },
+    hyperlink: {
+        class: Hyperlink,
+        config: {
+            shortcut: 'CMD+L',
+            target: '_blank', // default null
+            rel: 'nofollow', // default null
+            availableTargets: [ '_self',{'frame':'Cadre','_blank':'Nouvelle Fenêtre'}],
+            availableRels: [],
+            validate: false,
+            shouldAppendProtocol:false,
+            shouldMakeLinkAbsolute: true,
+            browseCallback : function (callback){
+
+                console.log('browse clicked');
+
+                callback('file.txt');
+            }
+        },
+    },
 };
