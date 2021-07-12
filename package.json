@@ -1,6 +1,6 @@
 {
-  "name": "@editorjs/simple-image",
-  "version": "1.4.1",
+  "name": "editorjs-image-browse",
+  "version": "1.0.0",
   "keywords": [
     "codex editor",
     "tool",
@@ -11,15 +11,15 @@
   ],
   "description": "SimpleImage Tool for Editor.js",
   "license": "MIT",
-  "repository": "https://github.com/editor-js/simple-image",
+  "repository": "https://github.com/FDT2k/editorjs-image-browse",
   "main": "./dist/bundle.js",
   "scripts": {
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development --watch"
   },
   "author": {
-    "name": "CodeX",
-    "email": "team@codex.so"
+    "name": "Fabien Karsegard",
+    "email": "fabien@karsegard.ch"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
