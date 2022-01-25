@@ -1,6 +1,6 @@
 import { ToolConstructable, ToolSettings } from '@editorjs/editorjs';
 import Paragraph from '@editorjs/paragraph'
-import SimpleImage from 'editorjs-simple-image';
+import SimpleImage from 'editorjs-image-browse';
 import Hyperlink from 'editorjs-hyperlink-browse';
 
 export const EDITOR_JS_TOOLS = {
@@ -17,6 +17,7 @@ export const EDITOR_JS_TOOLS = {
         class:SimpleImage,
         inlineToolbar: true,
         config:{
+            previewClass:'hello-preview',
             shouldMakeLinkAbsolute:true,
             browseCallback : function (callback){
 
@@ -37,6 +38,7 @@ export const EDITOR_JS_TOOLS = {
             validate: false,
             shouldAppendProtocol:false,
             shouldMakeLinkAbsolute: true,
+          
             browseCallback : function (callback){
 
                 console.log('browse clicked');

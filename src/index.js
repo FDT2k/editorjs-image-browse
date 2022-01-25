@@ -27,6 +27,8 @@ class SimpleImage {
 
     constructor({ data, config, api, readOnly }) {
         this.config = config;
+        console.log('config',this.config);
+
         this.data =data;
         this.nodes = {
              input: null,
@@ -42,7 +44,7 @@ class SimpleImage {
 
 
     render(){
-
+        
         this.nodes.editor = document.createElement('div');
         this.nodes.editor.classList.add('editor');
         this.nodes.button = document.createElement('button');
@@ -50,7 +52,7 @@ class SimpleImage {
         this.nodes.input.classList.add('input-url');
         this.nodes.input.type="hidden";
         this.nodes.preview = document.createElement('img');
-        this.nodes.preview.classList.add('picture-preview');
+        this.nodes.preview.classList.add(this.config.previewClass || 'picture-preview');
         console.log('loading',this.data);
 
         this.nodes.input.value =  this.data && this.data.url ? this.data.url : '';
